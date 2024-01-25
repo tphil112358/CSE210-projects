@@ -7,3 +7,15 @@ class Program
         Console.WriteLine("Hello Develop03 World!");
     }
 }
+
+// main/program
+
+// entry
+
+// Journal
+
+// function save journal
+
+// Function load journal
+
+// classes we need
