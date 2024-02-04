@@ -1,14 +1,12 @@
-using System;
-
-class Program
+class Program // I added password protection for privacy and error detection, so the program should never crash from user input.
 {
     static void Main(string[] args)
     {
         bool auth = false;
         string password = "ilovebyui";
-        Console.WriteLine("This is the private journal of █████ ████████.");
+        Console.WriteLine("This is the private journal of █████ ████████."); // One of my goals was to add encoding and decoding to and from file to the program eventually, but it didn't work out. Password protection makes a lot more sense with that context.
 
-        while (auth == false)
+        while (auth == false) // Puts the user in a loop until they enter the correct password 'ilovebyui'. 'ilovebyu' is the worst typo to make while typing in the password.
         {
             Console.WriteLine("Enter password: ");
             string passwordAttempt = Console.ReadLine();
@@ -44,7 +42,7 @@ class Program
             Console.WriteLine("5. Exit");
             Console.WriteLine();
 
-            if (date.Hour < 12) {Console.WriteLine("Good morning! Please enter the number corresponding with your choice:  ");} //Forgive the lack of whitespace here XD It looked abysmal in the proper syntax
+            if (date.Hour < 12) {Console.WriteLine("Good morning! Please enter the number corresponding with your choice:  ");} // This code detects the time of day and gives the user the proper greeting. Forgive the lack of whitespace here XD It looked abysmal in the proper syntax.
             else if (date.Hour < 18) {Console.WriteLine("Good afternoon! Please enter the number corresponding with your choice:  ");}
             else {Console.WriteLine("Good evening! Please enter the number corresponding with your choice:  ");}
 
@@ -89,7 +87,7 @@ class Program
                     Console.WriteLine("Invalid choice. Please try again.");
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) // Error Detection
             {
             Console.WriteLine($"Error executing request: {ex.Message}");
             }
