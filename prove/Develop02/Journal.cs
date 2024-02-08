@@ -23,7 +23,7 @@ class Journal
         System.IO.StreamWriter writer = new StreamWriter(filename);
         foreach (var entry in entries)
         {
-            writer.WriteLine($"{entry.Date}~{entry.Prompt}~{entry.Response}");
+            writer.WriteLine($"{entry.Date()}~{entry.Prompt()}~{entry.Response()}");
         }
         writer.Dispose();
     }
