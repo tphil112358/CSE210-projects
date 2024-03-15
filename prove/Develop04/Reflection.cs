@@ -30,31 +30,41 @@ using System;
 // Use inheritance by having a separate class for each kind of activity with a base class to contain any shared attributes or behaviors.
 // Avoid duplicating code in classes where it could instead be placed in a base class.
 // Follow the principles of encapsulation and abstraction by having private member variables and putting related items in the same class.
-class Reflection
-{
-    public void RunReflection()
-    {
-        Console.Clear();
-        Program program = new Program();
-        program.Loading(5);
-        Console.WriteLine("Welcome to this reflection exercise. Reflecting is easy and relaxing!");
-        Console.WriteLine("Consider the following prompt, and press enter when ready to proceed.");
+class Reflection : Program {
+    public void RunReflection() {
+        SetExerciseName("reflecting");
+        SetExerciseDescription("This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life. Consider the following prompt, and press enter when ready to proceed.");
+        SetExerciseDuration(30);
+        BeginExercise(GetExerciseName(),GetExerciseDescription(),GetExerciseDuration());
+        int _userInput = GetExerciseDuration();
+        int _finisher = _userInput;
+        List<string> _prompts = new List<string> { "---When was the last time you did something difficult, and what helped you overcome it?---", "---Think of a time when you did something truly selfless.---","---Think of a time when you did something really difficult.---"};
+        while (_userInput > 0) {
+            Random _rnd = new Random();
+            Console.WriteLine(_prompts[_rnd.Next(_prompts.Count)]);
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("Reflect on the following questions in regards to the previous question: ");
+            Console.WriteLine("");
+            PonderQuestion(_userInput);
+            PonderQuestion(_userInput);
+            _userInput -= 30;
+        }
+        EndExercise(_finisher,"reflecting");
+    }
+    private void PonderTime(int _userInput) {
+        if (_userInput >= 30) {
+                Loading(15);
+            }
+            else {
+                Loading(_userInput / 2);
+            }
+    }
+    private void PonderQuestion(int _userInput) {
+        List<string> _ponder = new List<string> {"If you heard a stranger give your answer, what would be your impression of them?","How can you keep this experience in mind in the future?","What is your favorite thing about this experience?","What made this time different than other times when you were not as successful?"};
+        Random _rnd = new Random();
+        Console.WriteLine(_ponder[_rnd.Next(_ponder.Count)]);
         Console.WriteLine("");
-        List<string> prompts = new List<string> { "---When was the last time you did something difficult, and what helped you overcome it?---", "---What is your favorite flavor of cheese? Why?---", "---Have you considered going outside for wholesome exercise today? Why or why not?---","---Why do we drive on parkways and park on driveways?---","---They say your social security number is how much money you're projected to earn by the end of your life! How much money will you make?---"};
-        Random rnd = new Random();
-        string randomPrompt = prompts[rnd.Next(prompts.Count)];
-        Console.WriteLine(randomPrompt);
-        Console.ReadLine();
-        Console.Clear();
-        Console.WriteLine("Reflect the following questions in regards to the previous question: ");
-        Console.WriteLine("");
-        Console.WriteLine("If you heard a stranger give your answer, what would be your impression of them?");
-        Console.WriteLine("");
-        program.Loading(15);
-        Console.WriteLine("How can you keep this experience in mind in the future?");
-        Console.WriteLine("");
-        program.Loading(15);
-        Console.WriteLine("[Exercise Complete!]");
-        Thread.Sleep(2000);
+        PonderTime(_userInput);
     }
 }
