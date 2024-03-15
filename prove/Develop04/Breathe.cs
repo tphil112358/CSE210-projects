@@ -5,16 +5,13 @@
 // After each message, the program should pause for several seconds and show a countdown.
 // It should continue until it has reached the number of seconds the user specified for the duration.
 // The activity should conclude with the standard finishing message for all activities.
-using System.Security.Cryptography.X509Certificates;
-
 class Breathe : Program {
     public void RunBreathe() {
         SetExerciseName("breathing");
         SetExerciseDescription("You will breathe in for 3 seconds, hold it for 2, breathe out for 3, hold it for 2 again, and repeat.");
-        SetExerciseDuration(30);
+        SetExerciseDuration(10);
         BeginExercise(GetExerciseName(),GetExerciseDescription(),GetExerciseDuration());
         int _userInput = GetExerciseDuration();
-        BeginExercise("breathing","You will breathe in for 3 seconds, hold it for 2, breathe out for 3, hold it for 2 again, and repeat.",10);
         int _finisher;
         if (_userInput < 10) {
             _finisher = 10;
