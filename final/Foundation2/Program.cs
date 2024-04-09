@@ -44,6 +44,10 @@ class Program
             new Product("GAMING Mouse [Extra GAMER LEDs]", 67890, 19.99, 2)
         };
         Order order1 = new Order(products1, customer1);
+        Console.WriteLine(order1.GetPackingLabel());
+        Console.WriteLine(order1.GetShippingLabel());
+        Console.WriteLine("\nTotal Price: $" + order1.GetTotalPrice());
+        Console.WriteLine();
 
         Address address2 = new Address("760 East Dorchester Dr", "Jacksonville", "FL", "USA");
         Customer customer2 = new Customer("Mrs.Phillips", address2);
@@ -53,6 +57,10 @@ class Program
             new Product("Surplus USARMY Patriot MDS", 18879, 2380000.00, 1)
         };
         Order order2 = new Order(products2, customer2);
+        Console.WriteLine(order2.GetPackingLabel());
+        Console.WriteLine(order2.GetShippingLabel());
+        Console.WriteLine("\nTotal Price: $" + order2.GetTotalPrice());
+        Console.WriteLine();
 
         Address address3 = new Address("5 Caribou Way", "Moose", "AB", "Canada");
         Customer customer3 = new Customer("Kenneth Bone", address3);
@@ -62,17 +70,6 @@ class Program
             new Product("Beaver Pheromones [AUTHENTICALLY and HUMANELY SOURCED]", 13509, 199.99, 1)
         };
         Order order3 = new Order(products3, customer3);
-
-        Console.WriteLine(order1.GetPackingLabel());
-        Console.WriteLine(order1.GetShippingLabel());
-        Console.WriteLine("\nTotal Price: $" + order1.GetTotalPrice());
-        Console.WriteLine();
-
-        Console.WriteLine(order2.GetPackingLabel());
-        Console.WriteLine(order2.GetShippingLabel());
-        Console.WriteLine("\nTotal Price: $" + order2.GetTotalPrice());
-        Console.WriteLine();
-
         Console.WriteLine(order3.GetPackingLabel());
         Console.WriteLine(order3.GetShippingLabel());
         Console.WriteLine("\nTotal Price: $" + order3.GetTotalPrice());

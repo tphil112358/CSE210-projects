@@ -19,41 +19,33 @@
 // Note: The YouTube example is just to give you a context for creating classes to store information. You will not actually be connecting to YouTube or downloading 
 // content in any way.
 using System;
+using System.Reflection;
 class Program
 {
     static void Main(string[] args)
     {
         List<Video> videos = new List<Video>();
 
-        Video video1 = new Video();
-        video1.title = "Burger King Foot Lettuce";
-        video1.creator = "Anon";
-        video1.duration = 36;
+        Video video1 = new Video{title = "Burger King Foot Lettuce", creator = "Anon", duration = 36};
         video1.comments.Add(new Comment{commenterName = "Anon[Creator]", commentText = "This is the lettuce you eat at Burger King."});
         video1.comments.Add(new Comment{commenterName = "Phialster17", commentText = "Gross."});
         video1.comments.Add(new Comment{commenterName = "Bob1", commentText = "Nice feet"});
         videos.Add(video1);
 
-        Video video2 = new Video();
-        video2.title = "The Moon is Our Door to Forever";
-        video2.creator = "ex1ruba";
-        video2.duration = 12182;
+        Video video2 = new Video{title = "The Moon is Our Door to Forever", creator = "ex1ruba",duration = 12182};
         video2.comments.Add(new Comment{commenterName = "Meme_lord", commentText = "ACTUALLY, the Moon has such a tragically limited habitation and this long-term toxic atmosphere that's totally inferior to Earth's. Can you even imagine living in such basic conditions? We're totally doomed if we even try. It's just sad that people still cling to this whole Moon colonization thing. Get real, guys. Let's not waste our precious time and resources on some far-fetched sci-fi dream. We should be focusing on solving real problems, you know? Why even bother with the Moon when we have perfectly good Earth to live on? Seriously, it's like some people just want to play space cowboys instead of facing reality. So lame."});
         video2.comments.Add(new Comment{commenterName = "Tyler Phillips", commentText = "This creator is postmoderism incarnate and his philosophy half-baked"});
         video2.comments.Add(new Comment{commenterName = "Not_NASA_Recruiting", commentText = "Imagine being NASA lol; they are so smart and being an aerospace engineer is probably the coolest job ever"});
         videos.Add(video2);
 
-        Video video3 = new Video();
-        video3.title = "Minecraft is the PERFECT game";
-        video3.creator = "Some_KING";
-        video3.duration = 19250;
+        Video video3 = new Video{title = "Minecraft is the PERFECT game", creator = "Some_KING",duration = 19250};
         video3.comments.Add(new Comment{commenterName = "1111111", commentText = "minecraft"});
         video3.comments.Add(new Comment{commenterName = "LadyEva", commentText = "This video made me cry. I'm gonna go play mc"});
         video3.comments.Add(new Comment{commenterName = "Steve", commentText = "minecraft"});
         video3.comments.Add(new Comment{commenterName = "Tyler Phillips", commentText = "Minecraft is KING"});
         videos.Add(video3);
 
-        foreach Video v in videos
+        foreach (Video v in videos)
         {
             Console.WriteLine("Title: " + v.title);
             Console.WriteLine("Creator: " + v.creator);
