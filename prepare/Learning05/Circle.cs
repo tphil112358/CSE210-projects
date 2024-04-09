@@ -1,15 +1,9 @@
-public class Circle : Shape
-{
+public class Circle : Shape {
     private double _radius;
-
-    public Circle(string color, double radius) : base (color)
-    {
+    public Circle(string color,double radius) : base(color) {
         _radius = radius;
     }
-
-    // Notice the use of the override keyword here
-    public override double GetArea()
-    {
+    public override double GetArea() {
         return Math.Pow(_radius,2) * Math.PI;
     }
 }
