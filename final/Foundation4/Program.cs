@@ -11,6 +11,7 @@
 
 // For each activity, they do not want to store this information, but they would like to be able to get following information (by calculation if it is not stored 
 // directly):
+
 // The distance
 // The speed (miles per hour or kilometers per hour)
 // The pace (minutes per mile or minutes per kilometer)
@@ -58,7 +59,7 @@ class Program
 
         foreach (Activity activity in activities)
         {
-            Console.WriteLine(activity.GetSummary());
+            Console.Write($"{activity.GetSummary()}\n");
         }
     }
 }
