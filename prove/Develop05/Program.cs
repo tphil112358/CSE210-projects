@@ -51,7 +51,7 @@ class Program {
                 LoadGoals();
             }
             else if (choice == "5") {
-                UpdateGoalCompletion();
+                // UpdateGoalCompletion();
             }
             else if (choice == "6") {
                 quit = true;
@@ -63,49 +63,98 @@ class Program {
         Console.WriteLine();
     }
 
-    static void CreateNewGoal()
-    {
+
+    static void CreateNewGoal() {
         Console.WriteLine("Enter the name of the goal:");
         string name = Console.ReadLine();
         Console.WriteLine("Enter the description of the goal:");
         string description = Console.ReadLine();
-        Goal goal = new Goal(name, description);
+        Console.WriteLine("Enter the type of goal (1. Simple 2. Eternal 3. Checklist):");
+        string typeChoice = Console.ReadLine();
+        Goal goal;
+        while (true) {
+            if (typeChoice == "1") {
+                goal = new SimpleGoal(name, description);
+                break;
+            }
+            else if (typeChoice == "2") {
+                goal = new EternalGoal(name, description);
+                break;
+            }
+            else if (typeChoice == "3") {
+                goal = new CheckListGoal(name, description);
+                break;
+            }
+            else {
+                Console.WriteLine("Invalid input. Please enter 1, 2, or 3.");
+                typeChoice = Console.ReadLine();
+            }
+        }
         goals.Add(goal);
         Console.WriteLine("Goal created successfully!");
     }
 
-    static void DisplayGoals()
-    {
+    static void DisplayGoals() {
         Console.WriteLine("Goals:");
-        foreach (var goal in goals)
+        foreach (var goal in goals) {
+            Console.WriteLine($"[{(goal.IsGoalComplete() ? "X" : " ")}] Name: {goal.GetGoalName()}, Description: {goal.GetGoalDescription()}, {goal.GetProgress()}");
+        }
+    }
+
+    static void SaveGoals() {
+    Console.WriteLine("Enter the file name to save goals:");
+    string fileName = Console.ReadLine();
+
+    try
+    {
+        using (StreamWriter writer = new StreamWriter(fileName))
         {
-            Console.WriteLine($"[ ] Name: {goal.GetGoalName()}, Description: {goal.GetGoalDescription()}, Completed: {goal.Completed}");
-        }
-    }
-
-    static void SaveGoals()
-    {
-    }
-
-    static void LoadGoals()
-    {
-    }
-
-    static void UpdateGoalCompletion() {
-        Console.WriteLine("Enter the index of the goal to update completion (starting from 0):");
-        if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < goals.Count) {
-            Console.WriteLine("Has the goal been completed? (true/false):");
-            if (bool.TryParse(Console.ReadLine(), out bool completed)) {
-                goals[index].Completed = completed;
-                Console.WriteLine("Goal completion updated successfully.");
-            }
-            else {
-                Console.WriteLine("Invalid input. Please enter true or false.");
+            foreach (var goal in goals)
+            {
+                writer.WriteLine($"{goal.GetType().Name}|{goal.GetGoalName()}|{goal.GetGoalDescription()}|{goal.IsGoalComplete()}");
             }
         }
-        else {
-            Console.WriteLine("Invalid index.");
-        }
+        Console.WriteLine("Goals saved successfully!");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error saving goals: {ex.Message}");
     }
 }
+
+    static void LoadGoals() {
+    Console.WriteLine("Enter the file name to load goals:");
+    string fileName = Console.ReadLine();
+
+    try {
+        using (StreamReader reader = new StreamReader(fileName)) {
+            string line;
+            while ((line = reader.ReadLine()) != null) {
+                string[] parts = line.Split('|');
+                string type = parts[0];
+                string name = parts[1];
+                string description = parts[2];
+                bool isComplete = bool.Parse(parts[3]);
+                Goal goal;
+                if (type == nameof(SimpleGoal)) {
+                    goal = new SimpleGoal(name, description);
+                }
+                else if (type == nameof(EternalGoal)) {
+                    goal = new EternalGoal(name, description);
+                }
+                else if (type == nameof(CheckListGoal)){
+                    goal = new CheckListGoal(name, description);
+                }
+                else {
+                    throw new ArgumentException($"Unknown goal type: {type}");
+                }
+                goal.SetGoalComplete(isComplete);
+                goals.Add(goal);
+            }
+        }
+        Console.WriteLine("Goals loaded successfully!");
+    }
+    catch (Exception ex) {
+        Console.WriteLine($"Error loading goals: {ex.Message}");
+    }}}
 }

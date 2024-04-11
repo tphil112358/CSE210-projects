@@ -1,35 +1,30 @@
-using System.Data;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices.Marshalling;
-
 abstract class Goal {
-    private int points;
     private string goalName;
     private string goalDescription;
-    private int goalComplete;
-    public int GetPoints() {
-        return points;
+    private bool goalComplete;
+
+    public Goal(string name, string description) {
+        goalName = name;
+        goalDescription = description;
+        goalComplete = false;
     }
-    public void SetPoints(int value) {
-        points = value;
-    }
+
     public string GetGoalName() {
         return goalName;
     }
-    public void SetGoalName(string value) {
-        goalName = value;
-    }
+
     public string GetGoalDescription() {
         return goalDescription;
     }
-    public void SetGoalDescription(string value) {
-        goalDescription = value;
-    }
-    public int GetGoalComplete() {
-        return goalComplete;
-    }
-    public void SetGoalComplete(int value) {
+
+    public void SetGoalComplete(bool value) {
         goalComplete = value;
     }
-    public abstract bool IsGoalComplete();
+
+    public bool IsGoalComplete() {
+        return goalComplete;
+    }
+
+    public abstract int GetPoints();
+    public abstract string GetProgress();
 }

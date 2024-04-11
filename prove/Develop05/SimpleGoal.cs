@@ -1,11 +1,15 @@
-using System.Runtime.CompilerServices;
-
 class SimpleGoal : Goal {
-    private int _numberOfCompletions;
-    _numberOfCompletions = 1;
-    public override bool IsGoalComplete() {
-        if (_numberOfCompletions > 0) {
-            return true;
-        }
+    private int points;
+
+    public SimpleGoal(string name, string description) : base(name, description) {
+        points = 0;
+    }
+
+    public override int GetPoints() {
+        return points;
+    }
+
+    public override string GetProgress() {
+        return "Simple goal. Marked complete for points.";
     }
 }
